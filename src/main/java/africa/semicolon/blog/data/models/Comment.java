@@ -1,6 +1,9 @@
 package africa.semicolon.blog.data.models;
 
-public class Comment {
+import lombok.Data;
+
+@Data
+public class Comment extends Storable{
     private Integer id;
     private Integer postId;
     private String comment;
