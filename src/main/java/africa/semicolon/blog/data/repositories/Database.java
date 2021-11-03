@@ -5,12 +5,16 @@ import africa.semicolon.blog.data.models.Storable;
 import java.util.*;
 
 public class Database<T extends Storable, ID > implements Repository<T, ID> {
-    Map<Integer, T> storage = new HashMap<>();
+    private Map<Integer, T> storage = new HashMap<>();
 
     @Override
     public T save(T t) {
-        Integer id = (storage.size() + 1);
-        t.setId(id);
+        Integer id;
+        if(t.getId() == null) {
+            id = (storage.size() + 1);
+            t.setId(id);
+        }
+        id = t.getId();
         storage.put(id, t);
         return storage.get(id);
     }
@@ -26,7 +30,7 @@ public class Database<T extends Storable, ID > implements Repository<T, ID> {
     public List<T> findAll() {
         List<T> all = new ArrayList<>();
         Set<Integer> keys = storage.keySet();
-        keys.forEach(key->all.add(storage.get(key)));
+        keys.forEach(key -> all.add(storage.get(key)));
         return all;
     }
 

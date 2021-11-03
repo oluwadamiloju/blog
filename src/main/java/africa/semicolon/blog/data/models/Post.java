@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -14,5 +15,5 @@ public class Post extends Storable{
     private String title;
     private LocalDateTime timePosted;
     private String body;
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 }
